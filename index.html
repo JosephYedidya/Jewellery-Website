@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DiamondBD — Bijoux de luxe</title>
+  <link rel="stylesheet" href="./Style.css">
+ 
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner container">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="logo">DIAMOND<span>BD</span></div>
+        <nav class="main-nav" aria-label="Main">
+          <ul>
+            <li><a href="#home" class="nav-link active" data-target="home">Accueil</a></li>
+            <li><a href="#collection" class="nav-link" data-target="collection">Collection</a></li>
+            <li><a href="#about" class="nav-link" data-target="about">À propos</a></li>
+            <li><a href="#blog" class="nav-link" data-target="blog">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggleBtn" title="Mode clair/sombre">🌙</button> 
+        <button class="icon-btn" id="searchBtn" title="Rechercher">🔍</button>
+        <div class="cart-badge" style="position:relative;">
+          <button class="icon-btn" id="openCartBtn" title="Ouvrir le panier">🛒</button>
+          <div id="cartCount" class="cart-count" style="display:none">0</div>
+        </div>
+        <a href="#login" class="simple" data-target="login">Se connecter</a>
+      </div>
+    </div>
+    <div id="searchBar" class="container" style="display:none; padding-top:10px; padding-bottom:10px; border-top:1px solid var(--border-color);">
+        <div style="display:flex; gap:10px;">
+            <input type="text" id="searchInput" class="search-input" placeholder="Entrez votre recherche (ex: Collier, Or 18K...)" style="flex:1; padding:10px; border-radius:10px; border:1px solid var(--border-color);">
+            <button id="searchSubmitBtn" class="btn" style="padding:10px 18px; border-radius:10px; background:var(--accent); color:#fff; font-weight:600;">Recherche</button>
+        </div>
+    </div>
+  </header>
+
+  <main class="container" id="appRoot">
+
+    <section id="home" class="hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <h1 id="heroTitle">Des bijoux qui racontent<br>votre histoire <span>en lumière</span></h1>
+        <p>DiamondBD crée des pièces raffinées — minimalistes, artisanales et durables. Explore notre sélection et trouve le bijou qui te ressemble.</p>
+        <div class="hero-cta">
+          <button class="btn" id="shopNow">Explorer la collection</button>
+          <button class="btn secondary" id="learnBtn">Notre histoire</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img class="hero-image" src="https://sspark.genspark.ai/cfimages?u1=pvXPEWreCpzEnnI5ZX9AXeCXLgvgP%2Bvhu%2BaKQ3SgKrGVVd5cfmpnHDqnyfwri2b0373aIal8fTyhLKt4fZg5jMOHnhliQLKVPLor4NQjiF9E0zWc3p5ZrqAmXzcFy1xY5LBpe2Jf6%2B7k%2B9P4mF8cZlCT0phqdA%3D%3D&u2=tjMp0UtV3J%2FTPoav&width=2560" alt="Collier diamant luxe">
+        <img class="hero-image" src="https://sspark.genspark.ai/cfimages?u1=u8icR7zKhIQuGRTF5K5r0uADEjnvpRgQG%2FH0t0mE3ZdqAWNrE4sN2ZsJf0aRWQmd5NG%2FzvSeVVlZ13RIb%2FKtUhDwai7nxtoF6GOtmJxAhledsTAL9n7uc3aD7VkV2h1dPODkWZ%2Fos9CJrcE6inq6X2UNaZc%3D&u2=fd3jWR%2BrJZ2R3kpR&width=2560" alt="Bracelet diamant élégant">
+      </div>
+    </section>
+
+    <section id="collection" style="margin-bottom:40px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <h2 class="section-title">Nos collections</h2>
+        <div style="color:var(--text-muted);font-size:14px;">Trier <select id="sortSelect" style="margin-left:8px;padding:6px;border-radius:8px;">
+          <option value="default">Par défaut</option>
+          <option value="price-asc">Prix ↑</option>
+          <option value="price-desc">Prix ↓</option>
+        </select></div>
+      </div>
+
+      <div class="products-grid" id="productsGrid" aria-live="polite">
+        </div>
+    </section>
+
+    <section id="productView" class="product-view container" aria-hidden="true">
+      <div class="pv-left" id="pvLeft">
+        </div>
+      <div class="pv-right" id="pvRight">
+        </div>
+    </section>
+
+    <section id="about" style="margin-bottom:40px;">
+      <h2 class="section-title">L'histoire de DiamondBD</h2>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+        <div style="flex:1;min-width:260px;">
+          <p style="color:var(--text-muted);">Née de la passion pour l'artisanat, DiamondBD imagine des bijoux conçus pour traverser le temps. Nous travaillons avec des ateliers responsables et privilégions des matériaux durables.</p>
+          <p style="color:var(--text-muted);margin-top:10px;">Chaque pièce est pensée comme un petit coffre à émotions — simple, élégant, et prêt à devenir un souvenir.</p>
+          <a class="simple" href="#collection" data-target="collection" style="display:inline-block;margin-top:12px;">Voir la collection →</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4b9ee9a?auto=format&fit=crop&w=900&q=80" alt="Atelier" style="width:420px;border-radius:16px;object-fit:cover;box-shadow:var(--card-shadow);min-width:220px;">
+      </div>
+    </section>
+
+    <section id="blog" style="margin-bottom:40px;">
+      <h2 class="section-title">Atelier & Tendances</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1582210256860-264627d2c184?q=80&w=600" alt="Établi de bijoutier avec outils et pièces en cours de fabrication" loading="lazy">
+          <div class="card-content">
+            <h3>Dans notre Atelier</h3>
+            <p>Découvrez le savoir-faire artisanal de nos maîtres-joailliers, de l'esquisse au polissage final.</p>
+          </div>
+        </article>
+  
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1549488344-f89a87d00f72?q=80&w=600" alt="Exemple de superposition (stacking) de colliers minimalistes" loading="lazy">
+          <div class="card-content">
+            <h3>Tendance Minimaliste: Stacking</h3>
+            <p>L'art d'accumuler les bijoux fins (stacking) est la tendance du moment. Des lignes pures et des formes géométriques pour une élégance intemporelle.</p>
+          </div>
+        </article>
+  
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1621379109772-5b967d71050e?q=80&w=600" alt="Nettoyage de bijoux avec un chiffon de polissage" loading="lazy">
+          <div class="card-content">
+            <h3>Conseils d'Entretien</h3>
+            <p>Apprenez à prendre soin de vos précieux bijoux. Utilisez un chiffon doux pour conserver l'éclat de l'or et de l'argent.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="about" style="margin-bottom:60px;">
+      <h2 class="section-title">L'histoire de DiamondBD</h2>
+      <div style="display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center;">
+        <div>
+          <p style="color:var(--text-muted);font-size:16px;line-height:1.7;">Née de la passion pour l'artisanat, DiamondBD imagine des bijoux conçus pour traverser le temps. Nous travaillons avec des ateliers responsables et privilégions des matériaux durables.</p>
+          <p style="color:var(--text-muted);margin-top:16px;font-size:16px;line-height:1.7;">Chaque pièce est pensée comme un petit coffre à émotions — simple, élégant, et prêt à devenir un souvenir.</p>
+          <a class="simple" href="#collection" data-target="collection" style="display:inline-block;margin-top:20px;font-size:16px;">Voir la collection →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4b9ee9a?auto=format&fit=crop&w=900&q=80" alt="Atelier de bijouterie artisanale" style="width:100%;height:280px;border-radius:16px;object-fit:cover;box-shadow:var(--card-shadow);">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80" alt="Création de bijoux à la main" style="width:100%;height:280px;border-radius:16px;object-fit:cover;box-shadow:var(--card-shadow);margin-top:30px;">
+        </div>
+      </div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:40px;">
+        <div style="text-align:center;padding:24px;background:var(--bg-secondary);border-radius:16px;">
+          <div style="font-size:40px;margin-bottom:12px;">✨</div>
+          <h3 style="color:var(--accent);font-size:18px;margin-bottom:8px;">Artisanat</h3>
+          <p style="color:var(--text-muted);font-size:14px;">Chaque pièce est façonnée à la main par nos maîtres-joailliers</p>
+        </div>
+        <div style="text-align:center;padding:24px;background:var(--bg-secondary);border-radius:16px;">
+          <div style="font-size:40px;margin-bottom:12px;">🌱</div>
+          <h3 style="color:var(--accent);font-size:18px;margin-bottom:8px;">Durabilité</h3>
+          <p style="color:var(--text-muted);font-size:14px;">Matériaux responsables et ateliers éco-certifiés</p>
+        </div>
+        <div style="text-align:center;padding:24px;background:var(--bg-secondary);border-radius:16px;">
+          <div style="font-size:40px;margin-bottom:12px;">💎</div>
+          <h3 style="color:var(--accent);font-size:18px;margin-bottom:8px;">Qualité</h3>
+          <p style="color:var(--text-muted);font-size:14px;">Or 18K, argent fin et diamants certifiés</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="login" style="margin-bottom:40px;">
+      <h2 class="section-title">Connexion / Inscription</h2>
+      <div style="max-width:420px;">
+        <form id="authForm" style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+          <input type="email" id="email" placeholder="Adresse e-mail" required style="padding:12px;border-radius:10px;">
+          <input type="password" id="password" placeholder="Mot de passe" required style="padding:12px;border-radius:10px;">
+          <div style="display:flex;gap:10px;">
+            <button class="btn" type="submit">Se connecter</button>
+            <button type="button" class="btn secondary" id="signupBtn">S'inscrire</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer style="padding:30px 0;text-align:center;color:var(--text-muted);border-top:1px solid var(--border-color);">
+      © 2025 DiamondBD — Tous droits réservés.
+    </footer>
+  </main>
+
+  <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+    <div class="cart-header">
+      <div style="font-weight:800">Ton panier</div>
+      <button id="closeCartBtn" class="remove-btn" aria-label="Fermer">✕</button>
+    </div>
+    <div id="cartBody" class="cart-body">
+      </div>
+    <div class="cart-footer">
+      <div class="cart-total"><div>Sous-total</div><div id="cartSubtotal">0€</div></div>
+      <div style="display:flex;gap:8px;">
+        <button id="clearCartBtn" class="btn secondary" style="flex:1;">Vider</button>
+        <button id="checkoutBtn" class="checkout-btn" style="flex:1;">Payer</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="./Script.js"></script>
+</body>
+</html>

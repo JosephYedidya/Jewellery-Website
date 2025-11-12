@@ -1,0 +1,268 @@
+  /* ---------- RESET ---------- */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body {
+    font-family: "Open Sans", sans-serif;
+    /* Utilisation des variables de thème */
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+    transition: background-color 0.3s, color 0.3s; /* Transition fluide pour le mode sombre */
+  }
+
+  /* ---------- VARIABLES (visual) ---------- */
+  :root{
+    /* Light Theme (Default) */
+    --accent:#b8965a;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f4;
+    --text-primary: #111111;
+    --text-muted: #666666;
+    --card-shadow: 0 6px 20px rgba(17,17,17,0.06);
+    --border-color: rgba(0,0,0,0.06);
+    --radius:16px;
+    --container-padding:32px;
+  }
+
+  /* ---------- DARK MODE OVERRIDES ---------- */
+  [data-theme="dark"] {
+    --bg-primary: #121212;
+    --bg-secondary: #1f1f1f;
+    --text-primary: #ffffff;
+    --text-muted: #b0b0b0;
+    --card-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    --border-color: rgba(255,255,255,0.1);
+  }
+
+  /* ---------------------------------------------------- */
+  /* NOUVEAU : Focus Styles for Accessibility (Option 3)  */
+  /* ---------------------------------------------------- */
+  a:focus,
+  button:focus,
+  input:focus:not([type="submit"]),
+  select:focus {
+      /* 1. Retire le contour par défaut du navigateur */
+      outline: none;
+      /* 2. Ajoute un anneau de focus stylisé et visible */
+      box-shadow: 
+          0 0 0 2px var(--bg-primary), /* Anneau intérieur pour séparer du fond */
+          0 0 0 4px var(--accent);   /* Anneau extérieur, couleur accent */
+      
+      border-color: var(--accent) !important; /* Surligne la bordure */
+      position: relative; 
+      z-index: 10;
+      transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  
+  /* Correction spécifique pour les liens de navigation */
+  nav.main-nav a:focus {
+      box-shadow: none; /* Annule l'anneau pour le nav */
+      outline: 2px dashed var(--accent); /* Utilise un contour discret à la place */
+      border-radius: 4px;
+      padding: 2px 4px;
+      margin: -2px -4px;
+  }
+  
+  /* Correction pour les petits boutons de suppression */
+  .remove-btn:focus {
+      box-shadow: none;
+      outline: 2px dashed crimson;
+      border-radius: 4px;
+  }
+  /* ---------------------------------------------------- */
+
+
+  /* ---------- LAYOUT ---------- */
+  .container { max-width:1200px; margin:0 auto; padding: 20px var(--container-padding); }
+
+  /* ---------- NAVBAR ---------- */
+  header.nav {
+    position: sticky; top:0; z-index:100;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+  }
+  .nav-inner {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; padding:18px var(--container-padding);
+    max-width:1200px; margin:0 auto;
+  }
+  .logo { font-family: "Playfair Display", serif; font-weight:700; font-size:20px; letter-spacing:0.6px; color:var(--text-primary); }
+  .logo span { color:var(--accent); }
+  nav.main-nav ul { display:flex; gap:18px; list-style:none; align-items:center; }
+  nav.main-nav a { text-decoration:none; color:var(--text-primary); font-weight:600; opacity:0.9; }
+  nav.main-nav a.active, nav.main-nav a:hover { color:var(--accent); }
+
+  .nav-actions { display:flex; gap:12px; align-items:center; }
+  .icon-btn {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:42px; height:42px; border-radius:12px;
+    border:1px solid var(--border-color);
+    background:var(--bg-primary); cursor:pointer;
+    color:var(--text-primary); /* Assure que l'icône est visible */
+  }
+  .cart-badge {
+    position:relative;
+  }
+  .cart-count {
+    position:absolute; top:-6px; right:-6px; background:var(--accent); color:#fff;
+    font-size:12px; padding:2px 6px; border-radius:999px; font-weight:700;
+    box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  }
+
+  /* Search Input Styling */
+  .search-input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    display:flex; gap:36px; align-items:center; margin:36px 0 48px; flex-wrap:wrap;
+  }
+  .hero-left { flex:1; min-width:280px; }
+  .hero-left h1 {
+    font-family: "Playfair Display", serif; font-size:42px; margin-bottom:18px; color:var(--text-primary);
+    line-height:1.06;
+  }
+  .hero-left h1 span { color:var(--accent); }
+  .hero-left p { color:var(--text-muted); margin-bottom:20px; max-width:560px; }
+  .hero-cta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .btn {
+    background:var(--text-primary); color:var(--bg-primary); border:none; padding:12px 20px; border-radius:28px; cursor:pointer;
+    font-weight:700; box-shadow: 0 6px 18px var(--border-color);
+  }
+  .btn.secondary { background:transparent; color:var(--text-primary); border:1px solid var(--border-color); font-weight:600; }
+  .hero-right { display:flex; gap:16px; }
+  .hero-image {
+    width:180px; height:250px; border-radius:18px; object-fit:cover; box-shadow:var(--card-shadow);
+  }
+
+  /* ---------- COLLECTION ---------- */
+  .section-title { font-family:"Playfair Display", serif; font-size:28px; margin-bottom:18px; }
+  .products-grid {
+    display:grid; gap:24px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .card {
+    background:var(--bg-primary); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);
+    display:flex; flex-direction:column;
+  }
+  .card-img { width:100%; height:220px; object-fit:cover; display:block; }
+  .card-body { padding:14px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .product-title { font-family:"Playfair Display", serif; font-size:16px; color:var(--text-primary); }
+  .product-desc { font-size:13px; color:var(--text-muted); margin-bottom:8px; }
+  .product-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; }
+  .price { color:var(--accent); font-weight:800; }
+  .card-actions { display:flex; gap:8px; align-items:center; }
+
+  /* Trier Select */
+  #sortSelect {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border:1px solid var(--border-color);
+  }
+
+
+  /* ---------- PRODUCT VIEW (single page) ---------- */
+  .product-view {
+    display:none; gap:36px; align-items:flex-start; padding:24px 0 48px;
+    margin-bottom:18px;
+  }
+  .pv-left { flex:1; min-width:280px; }
+  .pv-left img { width:100%; max-width:520px; border-radius:18px; object-fit:cover; box-shadow:var(--card-shadow); }
+  .pv-right { flex:1; max-width:520px; }
+  .pv-right h2 { font-family:"Playfair Display", serif; font-size:28px; margin-bottom:12px; }
+  .pv-right .pv-price { font-size:22px; color:var(--accent); margin-bottom:14px; font-weight:800; }
+  .pv-right p { color:var(--text-muted); margin-bottom:18px; }
+  .qty-row { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+  .qty { display:inline-flex; align-items:center; gap:6px; border-radius:10px; padding:6px; border:1px solid var(--border-color); }
+  .qty button { background:transparent; border:none; padding:6px 10px; cursor:pointer; font-weight:700; color:var(--text-primary); }
+  .back-link { display:inline-block; margin-top:18px; text-decoration:none; color:var(--text-primary); opacity:0.9; }
+
+  /* ---------- CART SIDEBAR ---------- */
+  .cart-panel {
+    position:fixed; right:20px; bottom:20px; z-index:120;
+    width:360px; max-width:92vw; background:var(--bg-primary); border-radius:16px; box-shadow:var(--card-shadow);
+    overflow:hidden; transform: translateY(110%); transition: transform .35s cubic-bezier(.2,.9,.2,1);
+  }
+  .cart-panel.open { transform: translateY(0); }
+  .cart-header { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--border-color); }
+  .cart-body { max-height:380px; overflow:auto; padding:12px 18px; display:flex; flex-direction:column; gap:12px; }
+  .cart-item { display:flex; gap:12px; align-items:center; }
+  .ci-thumb { width:64px; height:64px; object-fit:cover; border-radius:10px; }
+  .ci-info { flex:1; }
+  .ci-title { font-weight:700; font-size:14px; }
+  .ci-qty { font-size:13px; color:var(--text-muted); margin-top:6px; }
+  .ci-actions { display:flex; gap:8px; align-items:center; }
+  .remove-btn { background:transparent; border:none; color:crimson; font-weight:700; cursor:pointer; }
+  .cart-footer { padding:12px 18px; border-top:1px solid var(--border-color); display:flex; flex-direction:column; gap:12px; }
+  .cart-total { display:flex; justify-content:space-between; font-weight:800; font-size:16px; }
+  .checkout-btn { background:var(--text-primary); color:var(--bg-primary); border:none; padding:12px; border-radius:12px; cursor:pointer; font-weight:700; }
+
+  /* ---------- EMPTY STATES ---------- */
+  .empty { color:var(--text-muted); text-align:center; padding:24px; }
+
+  /* Login / Form Inputs */
+  #authForm input {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero { flex-direction:column; align-items:flex-start; }
+    .hero-right { order:2; }
+    .product-view { flex-direction:column; }
+    .pv-left img { max-width:100%; height:auto; }
+    .nav-inner { padding:12px 18px; }
+  }
+
+  @media (max-width:480px){
+    .nav-inner { gap:12px; }
+    .logo { font-size:18px; }
+    .hero-left h1 { font-size:30px; }
+  }
+
+  /* subtle link style */
+  a.simple { color:var(--accent); text-decoration:none; font-weight:700; }
+
+  /* Nouveaux styles pour la section Atelier & Tendances */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .feature-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(17,17,17,0.1);
+  }
+  .feature-card img {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour l'uniformité */
+    object-fit: cover;
+    display: block;
+  }
+  .card-content {
+    padding: 25px;
+  }
+  .card-content h3 {
+    color: var(--accent); /* Utilisation de la couleur d'accentuation */
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .card-content p {
+    color: var(--text-muted);
+    font-size: 16px;
+  }
